@@ -20,52 +20,58 @@ let text10 = document.getElementById("text10")
 let text11 = document.getElementById("text11")
 let input1 = document.getElementById("input1")
 let analisador = document.getElementById("analisador")
+let input2 = document.getElementById("input2")
+let btnEsp = document.getElementById("btnEsp")
+let lista = document.getElementById("lista")
+let error = document.getElementById('error')
+
+
 
 btn1.addEventListener("click", function () {
-    text.textContent = "Era uma vez uma menina chamada Chapeuzinho Vermelho...";
+  text.textContent = "Era uma vez uma menina chamada Chapeuzinho Vermelho...";
 });
 
 btn2.addEventListener("click", function () {
-    text2.textContent = "Era uma vez um lobo chamado Lobo Pau...";
+  text2.textContent = "Era uma vez um lobo chamado Lobo Pau...";
 });
 
 btn3.addEventListener("click", function () {
-    text3.textContent = "Era uma vez um arquivo chamado Epsdiddy...";
+  text3.textContent = "Era uma vez um arquivo chamado Epsdiddy...";
 });
 
 btn4.addEventListener("click", function () {
 
-    fetch("https://official-joke-api.appspot.com/random_joke")
-        .then(res => res.json())
-        .then(data => {
+  fetch("https://official-joke-api.appspot.com/random_joke")
+    .then(res => res.json())
+    .then(data => {
 
-            text4.textContent = data.setup + " " + data.punchline;
+      text4.textContent = data.setup + " " + data.punchline;
 
-        });
+    });
 
 });
 
 btn5.addEventListener("click", function () {
-    fetch("https://dog.ceo/api/breeds/image/random")
-        .then(res => res.json())
-        .then(data => {
-            img.src = data.message;
-        });
+  fetch("https://dog.ceo/api/breeds/image/random")
+    .then(res => res.json())
+    .then(data => {
+      img.src = data.message;
+    });
 });
 
 btn6.addEventListener("click", function () {
 
-    fetch("https://uselessfacts.jsph.pl/random.json?language=en")
-        .then(res => res.json())
-        .then(data => {
-            text5.textContent = data.text;
-        });
+  fetch("https://uselessfacts.jsph.pl/random.json?language=en")
+    .then(res => res.json())
+    .then(data => {
+      text5.textContent = data.text;
+    });
 
 });
 
-btn7.addEventListener('click', function() {
-    let useragent = navigator.platform;
-    text6.textContent = "seu sistema operacional é: " + useragent;
+btn7.addEventListener('click', function () {
+  let useragent = navigator.platform;
+  text6.textContent = "seu sistema operacional é: " + useragent;
 });
 
 fetch('./dados.json')
@@ -95,7 +101,7 @@ const buscarDados = async () => {
 
     const data = await response.json();
     text10.textContent = data.message4
-    
+
 
   } catch (error) {
     console.error("Erro:", error);
@@ -136,4 +142,48 @@ analisador.addEventListener('click', () => {
   }
 
   textEsp.textContent = mensagem;
+});
+
+btnEsp.addEventListener('click', () => {
+  const valor = input2.value.trim();
+  if (valor === '') return;
+
+  if (valor.length < 3) {
+    error.textContent = "nome pequeno, categoria não criada";
+    return;
+  }
+
+  error.textContent = "";
+
+  const li = document.createElement('li');
+
+  const btnDelete = document.createElement("button");
+  btnDelete.textContent = "❌";
+  btnDelete.classList.add("btnDelete");
+
+  const checkbox = document.createElement('input');
+  checkbox.type = "checkbox";
+
+  const texto = document.createTextNode(valor);
+
+  li.appendChild(checkbox);
+  li.appendChild(texto);
+  li.appendChild(btnDelete);
+
+  btnDelete.addEventListener("click", () => {
+    li.remove();
+  });
+
+  checkbox.addEventListener("change", () => {
+    if (checkbox.checked) {
+      li.style.textDecoration = "line-through";
+      li.style.color = "gray";
+    } else {
+      li.style.textDecoration = "none";
+      li.style.color = "black";
+    }
+  });
+
+  lista.appendChild(li);
+  input2.value = '';
 });
