@@ -17,6 +17,9 @@ let text7 = document.getElementById('text7');
 let text8 = document.getElementById("text8");
 let text9 = document.getElementById("text9")
 let text10 = document.getElementById("text10")
+let text11 = document.getElementById("text11")
+let input1 = document.getElementById("input1")
+let analisador = document.getElementById("analisador")
 
 btn1.addEventListener("click", function () {
     text.textContent = "Era uma vez uma menina chamada Chapeuzinho Vermelho...";
@@ -82,35 +85,6 @@ fetch('./dados3.json')
   .then(data => {
     text9.textContent = (data.message3)
   })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const buscarDados = async () => {
   try {
     const response = await fetch("dados4.json");
@@ -129,3 +103,37 @@ const buscarDados = async () => {
 };
 
 buscarDados();
+
+const Dados5 = async () => {
+  try {
+    const response = await fetch("dados5.json");
+
+    if (!response.ok) {
+      throw new Error("Erro na request");
+    }
+
+    const data = await response.json();
+    text11.textContent = data.message;
+
+  } catch (error) {
+    console.error("Deu erro:", error);
+  }
+};
+Dados5();
+
+analisador.addEventListener('click', () => {
+  const valor = input1.value.trim();
+  let mensagem = "";
+
+  if (valor === "") {
+    mensagem = "Digite algo";
+  } else if (valor.length < 3) {
+    mensagem = "Muito curto";
+  } else if (!/^[a-zA-ZÀ-ÿ]+$/.test(valor)) {
+    mensagem = "Use apenas letras, sem espaços ou numeros seu neandertal";
+  } else {
+    mensagem = "Nome válido! agora se mata";
+  }
+
+  textEsp.textContent = mensagem;
+});
