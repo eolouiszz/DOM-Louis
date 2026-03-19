@@ -1,124 +1,125 @@
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-    font-family: Arial, Helvetica, sans-serif;
-    background:#0f172a;
-    color:white;
-
-    min-height:100vh;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-
-    padding:40px 20px;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color:white;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:40px 20px;
 }
 
 h1{
-    margin-bottom:10px;
+  font-size:28px;
 }
 
-p{
-    margin-bottom:20px;
-    color:#cbd5f5;
+#pe{
+  font-size:13px;
+  color:#a5b4fc;
+  margin-bottom:20px;
 }
-
-/* container */
 
 #container{
-
-    width:100%;
-    max-width:800px;
-
-    display:flex;
-    flex-direction:column;
-
-    gap:25px;
-
-    margin-top:20px;
+  width:100%;
+  max-width:800px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
 }
 
-/* bloco de cada história */
+/* CARD */
 
 .card{
-
-    background:#1e293b;
-
-    padding:20px;
-
-    border-radius:10px;
-
-    display:flex;
-    flex-direction:column;
-
-    gap:10px;
+  background: rgba(30,41,59,0.7);
+  backdrop-filter: blur(10px);
+  padding:20px;
+  border-radius:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  transition:0.2s;
 }
 
-/* botão */
+.card:hover{
+  transform: translateY(-3px);
+}
+
+/* BOTÃO */
 
 button{
-
-    background:#6366f1;
-
-    border:none;
-
-    padding:12px;
-
-    border-radius:8px;
-
-    color:white;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:0.2s;
+  background: linear-gradient(135deg,#6366f1,#4f46e5);
+  border:none;
+  padding:10px;
+  border-radius:8px;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.2s;
 }
 
 button:hover{
-    background:#3b32ec;
+  transform: scale(1.03);
+  opacity:0.9;
 }
 
-/* texto */
+/* INPUT */
 
-.card p{
-    min-height:30px;
+input{
+  padding:10px;
+  border-radius:8px;
+  border:none;
+  outline:none;
+  background:#0f172a;
+  color:white;
 }
 
-#pe {
-    font-size:14px;
-    color:#c7c2f6;
-    margin-bottom: -10px;
-    margin-top: -30px;
-    letter-spacing: 2px;
+/* LISTA */
+
+ul{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
 }
 
-.btnDelete {
-  margin-left: auto;
-  cursor: pointer;
-
-  width: 32px;
-  height: 32px;
-
-  border: none;
-  border-radius: 8px;
-
-  background-color: #ff4d4d;
-  color: white;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 16px;
-
-  transition: 0.2s ease;
+li{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#0f172a;
+  padding:8px;
+  border-radius:8px;
 }
-.btnDelete:hover {
-  background-color: #ff1a1a;
+
+/* DELETE */
+
+.btnDelete{
+  margin-left:auto;
+  width:30px;
+  height:30px;
+  border:none;
+  border-radius:8px;
+  background:#ef4444;
+  color:white;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.btnDelete:hover{
+  background:#dc2626;
   transform: scale(1.1);
+}
+
+/* IMG */
+
+img{
+  width:100%;
+  border-radius:10px;
 }

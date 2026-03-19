@@ -1,189 +1,107 @@
-let btn1 = document.getElementById("btn1");
-let btn2 = document.getElementById("btn2");
-let btn3 = document.getElementById("btn3");
-let text = document.getElementById("text");
-let text2 = document.getElementById("text2");
-let text3 = document.getElementById("text3");
-let btn4 = document.getElementById("btn4");
-let text4 = document.getElementById("text4");
-let img = document.getElementById("img");
-let btn5 = document.getElementById("btn5");
-let btn6 = document.getElementById("btn6");
-let text5 = document.getElementById("text5");
-let btn7 = document.getElementById("btn7");
-let text6 = document.getElementById("text6");
-let btn8 = document.getElementById("btn8");
-let text7 = document.getElementById('text7');
-let text8 = document.getElementById("text8");
-let text9 = document.getElementById("text9")
-let text10 = document.getElementById("text10")
-let text11 = document.getElementById("text11")
-let input1 = document.getElementById("input1")
-let analisador = document.getElementById("analisador")
-let input2 = document.getElementById("input2")
-let btnEsp = document.getElementById("btnEsp")
-let lista = document.getElementById("lista")
-let error = document.getElementById('error')
+const $ = (id) => document.getElementById(id);
 
+// textos
+const text = $("text");
+const text2 = $("text2");
+const text3 = $("text3");
+const text4 = $("text4");
+const text5 = $("text5");
+const text6 = $("text6");
+const textEsp = $("textEsp");
 
+// inputs
+const input1 = $("input1");
+const input2 = $("input2");
 
-btn1.addEventListener("click", function () {
+// lista
+const lista = $("lista");
+const error = $("error");
+
+// img
+const img = $("img");
+
+// BOTÕES
+
+$("btn1").onclick = () => {
   text.textContent = "Era uma vez uma menina chamada Chapeuzinho Vermelho...";
-});
-
-btn2.addEventListener("click", function () {
-  text2.textContent = "Era uma vez um lobo chamado Lobo Pau...";
-});
-
-btn3.addEventListener("click", function () {
-  text3.textContent = "Era uma vez um arquivo chamado Epsdiddy...";
-});
-
-btn4.addEventListener("click", function () {
-
-  fetch("https://official-joke-api.appspot.com/random_joke")
-    .then(res => res.json())
-    .then(data => {
-
-      text4.textContent = data.setup + " " + data.punchline;
-
-    });
-
-});
-
-btn5.addEventListener("click", function () {
-  fetch("https://dog.ceo/api/breeds/image/random")
-    .then(res => res.json())
-    .then(data => {
-      img.src = data.message;
-    });
-});
-
-btn6.addEventListener("click", function () {
-
-  fetch("https://uselessfacts.jsph.pl/random.json?language=en")
-    .then(res => res.json())
-    .then(data => {
-      text5.textContent = data.text;
-    });
-
-});
-
-btn7.addEventListener('click', function () {
-  let useragent = navigator.platform;
-  text6.textContent = "seu sistema operacional é: " + useragent;
-});
-
-fetch('./dados.json')
-  .then(response => response.json())
-  .then(data => {
-    text7.textContent = data.message;
-  });
-
-fetch('./dados2.json')
-  .then(response => response.json())
-  .then(data => {
-    text8.textContent = data.message2
-  })
-
-fetch('./dados3.json')
-  .then(response => response.json())
-  .then(data => {
-    text9.textContent = (data.message3)
-  })
-const buscarDados = async () => {
-  try {
-    const response = await fetch("dados4.json");
-
-    if (!response.ok) {
-      throw new Error("Erro na requisição");
-    }
-
-    const data = await response.json();
-    text10.textContent = data.message4
-
-
-  } catch (error) {
-    console.error("Erro:", error);
-  }
 };
 
-buscarDados();
-
-const Dados5 = async () => {
-  try {
-    const response = await fetch("dados5.json");
-
-    if (!response.ok) {
-      throw new Error("Erro na request");
-    }
-
-    const data = await response.json();
-    text11.textContent = data.message;
-
-  } catch (error) {
-    console.error("Deu erro:", error);
-  }
+$("btn2").onclick = () => {
+  text2.textContent = "Era uma vez um lobo suspeito...";
 };
-Dados5();
 
-analisador.addEventListener('click', () => {
+$("btn3").onclick = () => {
+  text3.textContent = "Era uma vez um arquivo misterioso...";
+};
+
+$("btn4").onclick = async () => {
+  const res = await fetch("https://official-joke-api.appspot.com/random_joke");
+  const data = await res.json();
+  text4.textContent = data.setup + " " + data.punchline;
+};
+
+$("btn5").onclick = async () => {
+  const res = await fetch("https://dog.ceo/api/breeds/image/random");
+  const data = await res.json();
+  img.src = data.message;
+};
+
+$("btn6").onclick = async () => {
+  const res = await fetch("https://uselessfacts.jsph.pl/random.json?language=en");
+  const data = await res.json();
+  text5.textContent = data.text;
+};
+
+$("btn7").onclick = () => {
+  text6.textContent = "Sistema: " + navigator.platform;
+};
+
+// ANALISADOR
+
+$("analisador").onclick = () => {
   const valor = input1.value.trim();
-  let mensagem = "";
 
-  if (valor === "") {
-    mensagem = "Digite algo";
-  } else if (valor.length < 3) {
-    mensagem = "Muito curto";
-  } else if (!/^[a-zA-ZÀ-ÿ]+$/.test(valor)) {
-    mensagem = "Use apenas letras, sem espaços ou numeros seu neandertal";
-  } else {
-    mensagem = "Nome válido! agora se mata";
-  }
+  if (!valor) return textEsp.textContent = "Digite algo";
+  if (valor.length < 3) return textEsp.textContent = "Muito curto";
+  if (!/^[a-zA-ZÀ-ÿ]+$/.test(valor))
+    return textEsp.textContent = "Apenas letras";
 
-  textEsp.textContent = mensagem;
-});
+  textEsp.textContent = "Nome válido 👍";
+};
 
-btnEsp.addEventListener('click', () => {
+// TODO LIST
+
+$("btnEsp").onclick = () => {
   const valor = input2.value.trim();
-  if (valor === '') return;
 
+  if (!valor) return;
   if (valor.length < 3) {
-    error.textContent = "nome pequeno, categoria não criada";
+    error.textContent = "Muito curto";
     return;
   }
 
   error.textContent = "";
 
-  const li = document.createElement('li');
+  const li = document.createElement("li");
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+
+  const span = document.createElement("span");
+  span.textContent = valor;
 
   const btnDelete = document.createElement("button");
   btnDelete.textContent = "❌";
   btnDelete.classList.add("btnDelete");
 
-  const checkbox = document.createElement('input');
-  checkbox.type = "checkbox";
+  li.append(checkbox, span, btnDelete);
 
-  const texto = document.createTextNode(valor);
+  checkbox.onchange = () => {
+    span.style.textDecoration = checkbox.checked ? "line-through" : "none";
+  };
 
-  li.appendChild(checkbox);
-  li.appendChild(texto);
-  li.appendChild(btnDelete);
-
-  btnDelete.addEventListener("click", () => {
-    li.remove();
-  });
-
-  checkbox.addEventListener("change", () => {
-    if (checkbox.checked) {
-      li.style.textDecoration = "line-through";
-      li.style.color = "gray";
-    } else {
-      li.style.textDecoration = "none";
-      li.style.color = "black";
-    }
-  });
+  btnDelete.onclick = () => li.remove();
 
   lista.appendChild(li);
-  input2.value = '';
-});
+  input2.value = "";
+};
