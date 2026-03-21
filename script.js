@@ -8,6 +8,8 @@ const text4 = $("text4");
 const text5 = $("text5");
 const text6 = $("text6");
 const textEsp = $("textEsp");
+const resultado = $("resultado")
+const errorFetch = $("errorFetch")
 
 // inputs
 const input1 = $("input1");
@@ -21,6 +23,9 @@ const error = $("error");
 const img = $("img");
 
 // BOTÕES
+const btn6767 = document.getElementById("btnxi")
+
+const btnFetch = document.getElementById("btnFetch")
 
 $("btn1").onclick = () => {
   text.textContent = "Era uma vez uma menina chamada Chapeuzinho Vermelho...";
@@ -105,3 +110,18 @@ $("btnEsp").onclick = () => {
   lista.appendChild(li);
   input2.value = "";
 };
+
+async function dados6() {
+  try {
+    const res = await fetch('dados6.json')
+    if(!res.ok) {
+      throw new Error('Erro: ' + res.status)
+    }
+    const data = await res.json()
+      resultado.textContent = data.message67
+  }catch(erro) {
+    errorFetch.textContent = erro.message
+  }
+}
+
+btnFetch.addEventListener('click', dados6);
