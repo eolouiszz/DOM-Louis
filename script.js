@@ -74,8 +74,6 @@ $("analisador").onclick = () => {
   textEsp.textContent = "Nome válido 👍";
 };
 
-// TODO LIST
-
 $("btnEsp").onclick = () => {
   const valor = input2.value.trim();
 
