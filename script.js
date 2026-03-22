@@ -1,6 +1,5 @@
 const $ = (id) => document.getElementById(id);
 
-// textos
 const text = $("text");
 const text2 = $("text2");
 const text3 = $("text3");
@@ -8,36 +7,24 @@ const text4 = $("text4");
 const text5 = $("text5");
 const text6 = $("text6");
 const textEsp = $("textEsp");
-const resultado = $("resultado")
-const errorFetch = $("errorFetch")
+const resultado = $("resultado");
+const errorFetch = $("errorFetch");
+const p1 = $("p1");
+const p2 = $("p2");
+const p3 = $("p3");
+const p4 = $("p4");
+const p5 = $("p5");
+const p6 = $("p6");
 
-// inputs
 const input1 = $("input1");
 const input2 = $("input2");
-
-// lista
 const lista = $("lista");
 const error = $("error");
-
-// img
 const img = $("img");
 
-// BOTÕES
-const btn6767 = document.getElementById("btnxi")
-
-const btnFetch = document.getElementById("btnFetch")
-
-$("btn1").onclick = () => {
-  text.textContent = "Era uma vez uma menina chamada Chapeuzinho Vermelho...";
-};
-
-$("btn2").onclick = () => {
-  text2.textContent = "Era uma vez um lobo suspeito...";
-};
-
-$("btn3").onclick = () => {
-  text3.textContent = "Era uma vez um arquivo misterioso...";
-};
+$("btn1").onclick = () => { text.textContent = "Era uma vez uma menina chamada Chapeuzinho Vermelho..."; };
+$("btn2").onclick = () => { text2.textContent = "Era uma vez um lobo suspeito..."; };
+$("btn3").onclick = () => { text3.textContent = "Era uma vez um arquivo misterioso..."; };
 
 $("btn4").onclick = async () => {
   const res = await fetch("https://official-joke-api.appspot.com/random_joke");
@@ -57,69 +44,45 @@ $("btn6").onclick = async () => {
   text5.textContent = data.text;
 };
 
-$("btn7").onclick = () => {
-  text6.textContent = "Sistema: " + navigator.platform;
-};
-
-// ANALISADOR
+$("btn7").onclick = () => { text6.textContent = "Sistema: " + navigator.platform; };
 
 $("analisador").onclick = () => {
   const valor = input1.value.trim();
-
-  if (!valor) return textEsp.textContent = "Digite algo";
-  if (valor.length < 3) return textEsp.textContent = "Muito curto";
-  if (!/^[a-zA-ZÀ-ÿ]+$/.test(valor))
-    return textEsp.textContent = "Apenas letras";
-
-  textEsp.textContent = "Nome válido 👍";
+  if(!valor) return textEsp.textContent="Digite algo";
+  if(valor.length<3) return textEsp.textContent="Muito curto";
+  if(!/^[a-zA-ZÀ-ÿ]+$/.test(valor)) return textEsp.textContent="Apenas letras";
+  textEsp.textContent="Nome válido 👍";
 };
 
 $("btnEsp").onclick = () => {
   const valor = input2.value.trim();
-
-  if (!valor) return;
-  if (valor.length < 3) {
-    error.textContent = "Muito curto";
-    return;
-  }
-
-  error.textContent = "";
-
+  if(!valor) return;
+  if(valor.length<3){ error.textContent="Muito curto"; return; }
+  error.textContent="";
   const li = document.createElement("li");
-
   const checkbox = document.createElement("input");
-  checkbox.type = "checkbox";
-
+  checkbox.type="checkbox";
   const span = document.createElement("span");
   span.textContent = valor;
-
   const btnDelete = document.createElement("button");
-  btnDelete.textContent = "❌";
+  btnDelete.textContent="❌";
   btnDelete.classList.add("btnDelete");
-
   li.append(checkbox, span, btnDelete);
-
-  checkbox.onchange = () => {
-    span.style.textDecoration = checkbox.checked ? "line-through" : "none";
-  };
-
+  checkbox.onchange = () => { span.style.textDecoration = checkbox.checked?"line-through":"none"; };
   btnDelete.onclick = () => li.remove();
-
   lista.appendChild(li);
-  input2.value = "";
+  input2.value="";
 };
 
-async function dados6() {
-  try {
-    const res = await fetch('dados6.json')
-    if(!res.ok) {
-      throw new Error('Erro: ' + res.status)
-    }
-    const data = await res.json()
-      resultado.textContent = data.message67
-  }catch(erro) {
-    errorFetch.textContent = erro.message
+async function dados6(){
+  try{
+    const res = await fetch('dados6.json');
+    if(!res.ok) throw new Error('Erro: ' + res.status);
+    const data = await res.json();
+    resultado.textContent = data.message67;
+  }catch(erro){
+    errorFetch.textContent = erro.message;
   }
 }
 
-btnFetch.addEventListener('click', dados6);
+$("btnFetch").addEventListener('click', dados6);
